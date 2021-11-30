@@ -67,8 +67,8 @@ public class TemperatureSeriesAnalysis {
         double closest;
         if (numberOfTemps == 0) {
             throw new
-                    IllegalArgumentException
-                    ("Series of temperature is empty!");
+                    IllegalArgumentException(
+                            "Series of temperature is empty!");
         } else {
             closest = temperatureSeries[0];
             for (int i = 1; i < numberOfTemps; i++) {
@@ -140,8 +140,8 @@ public class TemperatureSeriesAnalysis {
         for (double temp: temps) {
             if (temp < MIN_VALUE) {
                 throw new
-                        InputMismatchException
-                        ("The temperature exceeds minimum value!");
+                        InputMismatchException(
+                                "The temperature exceeds minimum value!");
             }
             if (numberOfTemps == 0) {
                 temperatureSeries = Arrays.copyOf(temperatureSeries, 1);
