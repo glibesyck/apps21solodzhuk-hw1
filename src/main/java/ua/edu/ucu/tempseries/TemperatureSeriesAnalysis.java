@@ -1,11 +1,9 @@
 package ua.edu.ucu.tempseries;
 
-import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
-@Getter
 public class TemperatureSeriesAnalysis {
     private static final int MIN_VALUE = -273;
     private static final int MAX_VALUE = 100000;
@@ -26,6 +24,10 @@ public class TemperatureSeriesAnalysis {
         this.temperatureSeries =
                 Arrays.copyOf(temperatureSeries, temperatureSeries.length);
         this.numberOfTemps = temperatureSeries.length;
+    }
+
+    public double[] getTemperatureSeries() {
+        return Arrays.copyOf(temperatureSeries, numberOfTemps);
     }
 
     public double average() {
