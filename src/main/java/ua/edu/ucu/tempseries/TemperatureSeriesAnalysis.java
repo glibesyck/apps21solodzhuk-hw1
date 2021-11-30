@@ -5,11 +5,11 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
+@Getter
 public class TemperatureSeriesAnalysis {
     private static final int MIN_VALUE = -273;
     private static final int MAX_VALUE = 100000;
-    int numberOfTemps = 0;
-    @Getter
+    private int numberOfTemps = 0;
     private double[] temperatureSeries;
 
     public TemperatureSeriesAnalysis() {
@@ -19,17 +19,20 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         for (double temp: temperatureSeries) {
             if (temp < MIN_VALUE) {
-                throw new InputMismatchException("The temperature exceeds minimum possible value!");
+                throw new
+                        InputMismatchException("The temperature exceeds minimum value!");
             }
         }
-        this.temperatureSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        this.temperatureSeries =
+                Arrays.copyOf(temperatureSeries, temperatureSeries.length);
         this.numberOfTemps = temperatureSeries.length;
     }
 
     public double average() {
         double result = 0;
         if (numberOfTemps == 0) {
-            throw new IllegalArgumentException("Series of temperature is empty!");
+            throw new
+                    IllegalArgumentException("Series of temperature is empty!");
         } else {
             for (int i = 0; i < numberOfTemps; i++) {
                 result += temperatureSeries[i];
@@ -42,7 +45,7 @@ public class TemperatureSeriesAnalysis {
         double averageValue = average();
         double result = 0;
         for (int i = 0; i < numberOfTemps; i++) {
-            result += Math.pow(temperatureSeries[i] - averageValue, 2);
+            result += (temperatureSeries[i] - averageValue)*(temperatureSeries[i] - averageValue);
         }
         return result/numberOfTemps;
     }
@@ -62,13 +65,16 @@ public class TemperatureSeriesAnalysis {
     public double findTempClosestToValue(double tempValue) {
         double closest;
         if (numberOfTemps == 0) {
-            throw new IllegalArgumentException("Series of temperature is empty!");
+            throw new
+                    IllegalArgumentException("Series of temperature is empty!");
         } else {
             closest = temperatureSeries[0];
             for (int i = 1; i < numberOfTemps; i++) {
-                if (Math.abs(temperatureSeries[i] - tempValue) < Math.abs(closest - tempValue)) {
+                if (Math.abs(temperatureSeries[i] - tempValue)
+                        < Math.abs(closest - tempValue)) {
                     closest = temperatureSeries[i];
-                } else if (Math.abs(temperatureSeries[i] - tempValue) == Math.abs(closest - tempValue)) {
+                } else if (Math.abs(temperatureSeries[i] - tempValue)
+                        == Math.abs(closest - tempValue)) {
                     if (temperatureSeries[i] > tempValue) {
                         closest = temperatureSeries[i];
                     }
@@ -80,7 +86,8 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsLessThen(double tempValue) {
         if (numberOfTemps == 0) {
-            throw new IllegalArgumentException("Series of temperature is empty!");
+            throw new
+                    IllegalArgumentException("Series of temperature is empty!");
         } else {
             double[] result = {};
             int pointer = 0;
@@ -92,7 +99,7 @@ public class TemperatureSeriesAnalysis {
                         result = Arrays.copyOf(result, 2 * result.length);
                     }
                     result[pointer] = temperatureSeries[i];
-                    pointer ++;
+                    pointer++;
                 }
             }
             result = Arrays.copyOf(result, pointer);
@@ -102,7 +109,8 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsGreaterThen(double tempValue) {
         if (temperatureSeries.length == 0) {
-            throw new IllegalArgumentException("Series of temperature is empty!");
+            throw new
+                    IllegalArgumentException("Series of temperature is empty!");
         } else {
             double[] result = {};
             int pointer = 0;
@@ -114,7 +122,7 @@ public class TemperatureSeriesAnalysis {
                         result = Arrays.copyOf(result, 2 * result.length);
                     }
                     result[pointer] = temperatureSeries[i];
-                    pointer ++;
+                    pointer++;
                 }
             }
             result = Arrays.copyOf(result, pointer);
@@ -129,12 +137,12 @@ public class TemperatureSeriesAnalysis {
     public int addTemps(double... temps) {
         for (double temp: temps) {
             if (temp < MIN_VALUE) {
-                throw new InputMismatchException("The temperature exceeds minimum possible value!");
+                throw new
+                        InputMismatchException("The temperature exceeds minimum possible value!");
             }
-            if (this.numberOfTemps == 0) {
-                temperatureSeries = Arrays.copyOf(temperatureSeries, 1);
-            } else if (temperatureSeries.length == numberOfTemps) {
-                temperatureSeries = Arrays.copyOf(temperatureSeries, 2*temperatureSeries.length);
+            if (temperatureSeries.length == numberOfTemps) {
+                temperatureSeries =
+                        Arrays.copyOf(temperatureSeries, 2*temperatureSeries.length);
             }
             temperatureSeries[numberOfTemps] = temp;
             this.numberOfTemps += 1;
