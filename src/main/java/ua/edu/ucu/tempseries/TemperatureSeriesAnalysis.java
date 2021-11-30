@@ -45,7 +45,8 @@ public class TemperatureSeriesAnalysis {
         double averageValue = average();
         double result = 0;
         for (int i = 0; i < numberOfTemps; i++) {
-            result += (temperatureSeries[i] - averageValue)*(temperatureSeries[i] - averageValue);
+            result += (temperatureSeries[i] - averageValue)
+                    *(temperatureSeries[i] - averageValue);
         }
         return result/numberOfTemps;
     }
@@ -66,7 +67,8 @@ public class TemperatureSeriesAnalysis {
         double closest;
         if (numberOfTemps == 0) {
             throw new
-                    IllegalArgumentException("Series of temperature is empty!");
+                    IllegalArgumentException
+                    ("Series of temperature is empty!");
         } else {
             closest = temperatureSeries[0];
             for (int i = 1; i < numberOfTemps; i++) {
@@ -138,11 +140,13 @@ public class TemperatureSeriesAnalysis {
         for (double temp: temps) {
             if (temp < MIN_VALUE) {
                 throw new
-                        InputMismatchException("The temperature exceeds minimum possible value!");
+                        InputMismatchException
+                        ("The temperature exceeds minimum value!");
             }
             if (temperatureSeries.length == numberOfTemps) {
                 temperatureSeries =
-                        Arrays.copyOf(temperatureSeries, 2*temperatureSeries.length);
+                        Arrays.copyOf(temperatureSeries,
+                                2*temperatureSeries.length);
             }
             temperatureSeries[numberOfTemps] = temp;
             this.numberOfTemps += 1;
