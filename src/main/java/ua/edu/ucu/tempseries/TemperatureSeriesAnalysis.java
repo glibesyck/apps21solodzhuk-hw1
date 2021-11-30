@@ -143,7 +143,10 @@ public class TemperatureSeriesAnalysis {
                         InputMismatchException
                         ("The temperature exceeds minimum value!");
             }
-            if (temperatureSeries.length == numberOfTemps) {
+            if (numberOfTemps == 0) {
+                temperatureSeries = Arrays.copyOf(temperatureSeries, 1);
+            }
+            else if (temperatureSeries.length == numberOfTemps) {
                 temperatureSeries =
                         Arrays.copyOf(temperatureSeries,
                                 2*temperatureSeries.length);

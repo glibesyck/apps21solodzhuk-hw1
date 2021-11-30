@@ -268,7 +268,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.addTemps(newTemps);
         double [] expResult = {3.0, -5.0, 1.0, 5.0, -1.0, -5.0, 0.0, 2.0};
         double [] actualResult = seriesAnalysis.getTemperatureSeries();
-        System.out.println(Arrays.toString(actualResult));
         for (int i = 0; i < actualResult.length; i ++) {
             assertEquals(expResult[i], actualResult[i], 0.00001);
         }
@@ -281,7 +280,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.addTemps(newTemps);
         double [] expResult = {3.0, -5.0, 1.0, 5.0, -1.0, -5.0, 0.0};
         double [] actualResult = seriesAnalysis.getTemperatureSeries();
-        System.out.println(Arrays.toString(actualResult));
         for (int i = 0; i < actualResult.length; i ++) {
             assertEquals(expResult[i], actualResult[i], 0.00001);
         }
@@ -294,7 +292,6 @@ public class TemperatureSeriesAnalysisTest {
         seriesAnalysis.addTemps(newTemps);
         double [] expResult = {2.0, 3.0, 3.0, -5.0, 1.0, 5.0, -1.0, -5.0, 0.0};
         double [] actualResult = seriesAnalysis.getTemperatureSeries();
-        System.out.println(Arrays.toString(actualResult));
         for (int i = 0; i < actualResult.length; i ++) {
             assertEquals(expResult[i], actualResult[i], 0.00001);
         }
@@ -305,5 +302,16 @@ public class TemperatureSeriesAnalysisTest {
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         double[] newTemps = {3.0, -5.0, 1.0, 5.0, -1.0, -5.0, 0.0, -273.01};
         seriesAnalysis.addTemps(newTemps);
+    }
+    @Test
+    public void testAddTempsEmpty() {
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
+        double[] newTemps = {-2.0, 3.0, 4.0};
+        seriesAnalysis.addTemps(newTemps);
+        double [] expResult = {-2.0, 3.0, 4.0};
+        double [] actualResult = seriesAnalysis.getTemperatureSeries();
+        for (int i = 0; i < actualResult.length; i ++) {
+            assertEquals(expResult[i], actualResult[i], 0.00001);
+        }
     }
 }
